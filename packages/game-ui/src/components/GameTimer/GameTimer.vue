@@ -64,14 +64,14 @@ onUnmounted(stop);
 .game-timer {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-s);
 
   &__icon {
     color: var(--color-primary);
   }
 
   &__value {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
     font-weight: 700;
     min-width: 3ch;
     text-align: right;

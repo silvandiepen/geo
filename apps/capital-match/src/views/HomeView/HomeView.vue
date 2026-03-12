@@ -47,21 +47,21 @@ const { t } = useI18n();
   }
 
   &__icon {
-    font-size: 4rem;
+    font-size: var(--font-size-4xl);
     color: var(--color-primary);
     display: block;
     margin: 0 auto var(--space-m);
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-size-3xl);
     font-weight: 800;
     margin-bottom: var(--space-m);
   }
 
   p {
-    color: var(--color-muted);
-    font-size: 1.1rem;
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
+    font-size: var(--font-size-l);
     margin-bottom: var(--space-xl);
   }
 
@@ -69,15 +69,15 @@ const { t } = useI18n();
     margin-bottom: var(--space-l);
 
     h2 {
-      font-size: 1.2rem;
+      font-size: var(--font-size-l);
       font-weight: 700;
       margin-bottom: var(--space-m);
     }
 
     ul {
-      padding-left: 1.5rem;
+      padding-left: calc(var(--space-m) * 1.5);
 
-      li { margin-bottom: 8px; }
+      li { margin-bottom: var(--space-s); }
     }
   }
 }

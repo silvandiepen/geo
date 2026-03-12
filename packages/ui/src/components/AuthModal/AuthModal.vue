@@ -153,7 +153,7 @@ function submit() {
   &__panel {
     position: relative;
     z-index: 1;
-    background: var(--color-surface);
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);
     border-radius: var(--border-radius-l);
     padding: var(--space-xl);
     width: 100%;
@@ -168,12 +168,12 @@ function submit() {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-muted);
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     padding: var(--space-xs);
     border-radius: var(--border-radius-s);
     display: flex;
     align-items: center;
-    font-size: 1.25rem;
+    font-size: var(--font-size-l);
 
     &:hover {
       color: var(--color-foreground);
@@ -210,7 +210,7 @@ function submit() {
   &__switch {
     margin-top: var(--space-m);
     font-size: var(--font-size-s);
-    color: var(--color-muted);
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     text-align: center;
   }
 

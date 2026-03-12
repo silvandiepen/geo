@@ -86,7 +86,7 @@ onMounted(newRound);
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: 2rem;
+    font-size: var(--font-size-2xl);
     display: block;
     margin: var(--space-xl) auto;
   }
@@ -103,7 +103,7 @@ onMounted(newRound);
   &__hints {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: calc(var(--space-s) * 1.25);
     margin-bottom: var(--space-l);
   }
 
@@ -116,20 +116,20 @@ onMounted(newRound);
   &__hint-icon {
     color: var(--color-primary);
     flex-shrink: 0;
-    font-size: 1.25rem;
+    font-size: var(--font-size-l);
     margin-top: 2px;
   }
 
   &__hint-label {
-    font-size: 0.8rem;
+    font-size: var(--font-size-xs);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--color-muted);
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     margin-bottom: 2px;
   }
 
   &__hint-value {
-    font-size: 1.1rem;
+    font-size: var(--font-size-l);
     font-weight: 700;
   }
 
@@ -149,7 +149,7 @@ onMounted(newRound);
   &__guesses {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--space-s);
   }
 }
 
@@ -164,12 +164,12 @@ onMounted(newRound);
 
 .badge {
   display: inline-block;
-  padding: 2px 8px;
+  padding: 2px var(--space-s);
   border-radius: var(--border-radius-s);
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   font-weight: 600;
 
-  &--default { background: var(--color-surface); color: var(--color-foreground); border: 1px solid var(--color-border); }
+  &--default { background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%); color: var(--color-foreground); border: 1px solid var(--color-border); }
   &--danger  { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
 }
 </style>

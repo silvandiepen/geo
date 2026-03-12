@@ -57,18 +57,18 @@ function optionClass(value: string): string {
 .mc {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: calc(var(--space-s) * 1.5);
 
   &__option {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 14px 16px;
+    gap: var(--space-s);
+    padding: 14px var(--space-m);
     border: 2px solid var(--color-border);
     border-radius: 10px;
-    background: var(--color-surface);
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: var(--font-size-m);
     font-weight: 500;
     transition: var(--transition-fast);
     text-align: left;

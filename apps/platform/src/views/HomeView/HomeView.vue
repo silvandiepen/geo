@@ -108,7 +108,7 @@ function handleLogout() {
 
 <style scoped lang="scss">
 .app-header {
-  background: var(--color-surface);
+  background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
@@ -134,7 +134,7 @@ function handleLogout() {
   }
 
   &__logo {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
   }
 
   &__actions {
@@ -196,21 +196,21 @@ function handleLogout() {
   }
 
   &__globe {
-    font-size: 4rem;
+    font-size: var(--font-size-4xl);
     color: var(--color-primary);
     display: block;
     margin: 0 auto var(--space-m);
   }
 
   &__title {
-    font-size: 2.5rem;
+    font-size: var(--font-size-3xl);
     font-weight: 800;
     margin-bottom: var(--space-m);
     color: var(--color-foreground);
   }
 
   &__subtitle {
-    color: var(--color-muted);
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     font-size: var(--font-size-l);
     margin-bottom: 0;
   }
@@ -237,7 +237,7 @@ function handleLogout() {
   align-items: center;
   gap: var(--space-m);
   padding: var(--space-l);
-  background: var(--color-surface);
+  background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);
   border-radius: var(--border-radius-l);
   border-left: 6px solid var(--game-color);
   box-shadow: var(--shadow-s);
@@ -251,23 +251,23 @@ function handleLogout() {
     text-decoration: none;
   }
 
-  &__emoji { font-size: 2.5rem; flex-shrink: 0; }
+  &__emoji { font-size: var(--font-size-3xl); flex-shrink: 0; }
   &__content { flex: 1; min-width: 0; }
-  &__name { font-size: var(--font-size-l); font-weight: 700; margin-bottom: 4px; }
+  &__name { font-size: var(--font-size-l); font-weight: 700; margin-bottom: var(--space-xs); }
 
   &__description {
     font-size: var(--font-size-s);
-    color: var(--color-muted);
-    margin-bottom: 8px;
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
+    margin-bottom: var(--space-s);
     line-height: 1.4;
   }
 
-  &__arrow { color: var(--color-muted); flex-shrink: 0; }
+  &__arrow { color: color-mix(in srgb, var(--color-foreground), transparent 50%); flex-shrink: 0; }
 }
 
 .badge {
   display: inline-block;
-  padding: 2px 8px;
+  padding: 2px var(--space-s);
   border-radius: var(--border-radius-s);
   background: color-mix(in srgb, var(--color-primary), transparent 85%);
   color: var(--color-primary);

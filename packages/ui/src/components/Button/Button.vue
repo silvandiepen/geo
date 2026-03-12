@@ -334,7 +334,7 @@ display: inline-flex;
 align-items: center;
 margin-right: var(--int-button-icon-margin-right);
 color: var(--int-button-icon-color);
-font-size: 1.25em;
+font-size: var(--font-size-l);
 
 &--hover {
 position: absolute;
@@ -344,7 +344,7 @@ transition: opacity 0.3s var(--cubic-bezier);
 }
 
 &__status-icon {
-font-size: 0.75em;
+font-size: var(--font-size-xs);
 margin-right: var(--space);
 }
 
@@ -381,11 +381,11 @@ box-shadow: 0 0 0 var(--border-width) var(--color-focus);
 }
 
 // Sizes
-&--xsmall { font-size: 0.75em; }
-&--small   { font-size: 0.875em; }
-&--medium  { font-size: 1em; }
+&--xsmall { font-size: var(--font-size-xs); }
+&--small   { font-size: var(--font-size-s); }
+&--medium  { font-size: var(--font-size-m); }
 &--large   { font-size: 1.125em; }
-&--xlarge  { font-size: 1.5em; }
+&--xlarge  { font-size: var(--font-size-xl); }
 
 // Icon-only
 &--icon-only {

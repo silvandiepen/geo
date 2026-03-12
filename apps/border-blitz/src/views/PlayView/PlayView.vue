@@ -99,7 +99,7 @@ const {
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: 2rem;
+    font-size: var(--font-size-2xl);
     display: block;
     margin: var(--space-xl) auto;
   }
@@ -118,26 +118,26 @@ const {
   &__card { margin-bottom: var(--space-l); }
 
   &__question {
-    font-size: 1.2rem;
+    font-size: var(--font-size-l);
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-s);
   }
 
   &__progress {
-    color: var(--color-muted);
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     margin-bottom: var(--space-m);
   }
 
   &__found {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--space-s);
     margin-bottom: var(--space-m);
   }
 
   &__input {
     display: flex;
-    gap: 10px;
+    gap: calc(var(--space-s) * 1.25);
     margin-bottom: var(--space-m);
     align-items: flex-end;
   }
@@ -145,7 +145,7 @@ const {
   &__wrong {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: calc(var(--space-xs) * 1.5);
   }
 
   &__start {
@@ -168,13 +168,13 @@ const {
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
+  gap: var(--space-xs);
+  padding: 2px var(--space-s);
   border-radius: var(--border-radius-s);
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   font-weight: 600;
 
-  &--default { background: var(--color-surface); color: var(--color-foreground); border: 1px solid var(--color-border); }
+  &--default { background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%); color: var(--color-foreground); border: 1px solid var(--color-border); }
   &--success { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
   &--danger  { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
 }

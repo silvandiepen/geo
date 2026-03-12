@@ -3,7 +3,12 @@
     <router-view />
   </div>
 </template>
-<script setup lang="ts"></script>
+
+<script setup lang="ts">
+</script>
+
 <style lang="scss">
-.walk-it-app { min-height: 100vh; background: var(--color-background); }
+.walk-it-app {
+  min-height: 100vh;
+}
 </style>

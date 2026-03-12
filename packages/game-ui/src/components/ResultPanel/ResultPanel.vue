@@ -38,12 +38,12 @@ defineProps<{
   &__content {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: calc(var(--space-s) * 1.5);
   }
 
   &__icon {
     flex-shrink: 0;
-    font-size: 1.25rem;
+    font-size: var(--font-size-l);
   }
 
   &__details {
@@ -54,8 +54,8 @@ defineProps<{
   &__score {
     flex-shrink: 0;
     font-weight: 700;
-    font-size: 0.9rem;
-    padding: 2px 8px;
+    font-size: var(--font-size-s);
+    padding: 2px var(--space-s);
     border-radius: var(--border-radius-s);
     background: color-mix(in srgb, currentColor 15%, transparent);
   }

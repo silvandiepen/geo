@@ -107,7 +107,7 @@ function handleFinish() {
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: 2rem;
+    font-size: var(--font-size-2xl);
   }
 
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -133,29 +133,29 @@ function handleFinish() {
   &__country {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 1.1rem;
+    gap: var(--space-s);
+    font-size: var(--font-size-l);
     font-weight: 600;
-    padding: 8px 16px;
+    padding: var(--space-s) var(--space-m);
     border-radius: var(--border-radius-s);
 
     &--start  { background: color-mix(in srgb, var(--color-success), transparent 85%); color: var(--color-primary); }
     &--target { background: color-mix(in srgb, var(--color-info), transparent 85%); color: var(--color-info); }
   }
 
-  &__arrow { color: var(--color-muted); font-size: 1.5rem; }
+  &__arrow { color: color-mix(in srgb, var(--color-foreground), transparent 50%); font-size: var(--font-size-xl); }
 
   &__progress {
     display: flex;
     justify-content: space-between;
     margin-bottom: var(--space-m);
-    font-size: 0.95rem;
+    font-size: var(--font-size-s);
   }
 
   &__current {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: calc(var(--space-xs) * 1.5);
 
     strong { color: var(--color-primary); }
   }
@@ -170,15 +170,15 @@ function handleFinish() {
   }
 
   &__neighbors-label {
-    font-size: 0.9rem;
-    color: var(--color-muted);
+    font-size: var(--font-size-s);
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     margin-bottom: var(--space-m);
   }
 
   &__neighbors {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: calc(var(--space-s) * 1.25);
   }
 
   &__result { margin-top: var(--space-m); }

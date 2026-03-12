@@ -39,18 +39,18 @@ const label = props.label ?? { score: 'Score', correct: 'Correct', streak: 'Stre
 <style scoped lang="scss">
 .score-display {
   display: flex;
-  gap: 20px;
+  gap: calc(var(--space-m) * 1.25);
   align-items: center;
   flex-wrap: wrap;
 
   &__item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-s);
   }
 
   &__icon {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
 
     &--gold   { color: #f59e0b; }
     &--green  { color: #22c55e; }
@@ -63,15 +63,15 @@ const label = props.label ?? { score: 'Score', correct: 'Correct', streak: 'Stre
   }
 
   &__label {
-    font-size: 0.7rem;
+    font-size: var(--font-size-xs);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--color-muted);
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     font-weight: 600;
   }
 
   &__value {
-    font-size: 1.25rem;
+    font-size: var(--font-size-l);
     font-weight: 700;
     color: var(--color-foreground);
   }

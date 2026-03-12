@@ -94,19 +94,19 @@ const iconStyle = computed(() =>
 	}
 
 	&--xsmall {
-		font-size: 0.6em;
+		font-size: var(--font-size-xs);
 	}
 	&--small {
-		font-size: 0.8em;
+		font-size: var(--font-size-s);
 	}
 	&--medium {
-		font-size: 1em;
+		font-size: var(--font-size-m);
 	}
 	&--large {
-		font-size: 1.25em;
+		font-size: var(--font-size-l);
 	}
 	&--xlarge {
-		font-size: 1.5em;
+		font-size: var(--font-size-xl);
 	}
 }
 </style>

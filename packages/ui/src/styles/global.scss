@@ -1,0 +1,124 @@
+@use "./color" as c;
+@use "./reset";
+@use "./utility-classes";
+
+:root {
+  // ── Spacing ────────────────────────────────────────────────────────────────
+  --space-xs: calc(var(--space) / 4);
+  --space-s:  calc(var(--space) / 2);
+  --space:    1rem;
+  --space-m:  calc(var(--space) * 1);
+  --space-l:  calc(var(--space) * 2);
+  --space-xl: calc(var(--space) * 3);
+  --spacing:  clamp(var(--space), 4vw, var(--space-xl));
+
+  // ── Border radius ──────────────────────────────────────────────────────────
+  --border-radius-s:   calc(var(--border-radius) / 2);
+  --border-radius:     0.9em;
+  --border-radius-l:   calc(var(--border-radius) * 2);
+  --border-radius-xl:  calc(var(--border-radius) * 3);
+  --border-radius-xxl: calc(var(--border-radius) * 6);
+  --border-width:      1px;
+
+  // ── Typography ─────────────────────────────────────────────────────────────
+  --font-size-xs: calc(var(--font-size) * 0.75);
+  --font-size-s:  calc(var(--font-size) * 0.875);
+  --font-size:    1em;
+  --font-size-m:  calc(var(--font-size) * 1);
+  --font-size-l:  calc(var(--font-size) * 1.25);
+  --font-size-xl: calc(var(--font-size) * 1.5);
+  --font-size-2xl: calc(var(--font-size) * 2);
+  --font-size-3xl: calc(var(--font-size) * 2.5);
+  --font-size-4xl: calc(var(--font-size) * 4);
+
+  --font-weight-light:      300;
+  --font-weight-normal:     400;
+  --font-weight-medium:     500;
+  --font-weight-bold:       600;
+  --font-weight-extra-bold: 700;
+  --font-weight-black:      900;
+
+  --font-family:
+    "Manrope", "Avenir Next", "Segoe UI", Arial, sans-serif;
+  --font-family-heading:
+    "Sora", "Manrope", "Avenir Next", "Segoe UI", Arial, sans-serif;
+  --font-family-monospace:
+    "SF Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  // ── Animation ──────────────────────────────────────────────────────────────
+  --cubic-bezier:    cubic-bezier(0, 0.5, 0.5, 1.5);
+  --bezier:          var(--cubic-bezier);
+  --transition:      0.2s ease;
+  --transition-fast: 0.12s ease;
+
+  // ── Shadows (calculated from foreground color) ─────────────────────────────
+  --shadow-s: 0 1px 2px color-mix(in srgb, var(--color-foreground), transparent 85%);
+  --shadow-m: 0 4px 12px color-mix(in srgb, var(--color-foreground), transparent 80%),
+              0 1px 3px  color-mix(in srgb, var(--color-foreground), transparent 88%);
+  --shadow-l: 0 8px 24px color-mix(in srgb, var(--color-foreground), transparent 75%),
+              0 2px 6px  color-mix(in srgb, var(--color-foreground), transparent 85%);
+
+  // ── Base palette — generated from $base-colors map ─────────────────────────
+  @each $name, $value in c.$base-colors {
+    --color-#{$name}: #{$value};
+    --color-#{$name}-contrast: #{c.contrast-color($value)};
+  }
+
+  // ── Token palette — generated from $token-colors map ──────────────────────
+  // Use these tokens in ALL components. Never reference base palette directly.
+  @each $token, $value in c.$token-colors {
+    --color-#{$token}: #{$value};
+    --color-#{$token}-contrast: #{c.contrast-color($value)};
+  }
+
+  // Light-mode defaults
+  --color-background: var(--color-light);
+  --color-foreground: var(--color-dark);
+}
+
+// ── Dark mode ─────────────────────────────────────────────────────────────────
+:root[data-color-mode="dark"] {
+  --color-background: var(--color-dark);
+  --color-foreground: var(--color-light);
+}
+
+:root[data-color-mode="light"] {
+  --color-background: var(--color-light);
+  --color-foreground: var(--color-dark);
+}
+
+// ── Base body styles ──────────────────────────────────────────────────────────
+body,
+html {
+  min-height: 100%;
+  background:
+    radial-gradient(
+      1200px 800px at 12% 0%,
+      color-mix(in srgb, var(--color-primary), transparent 90%),
+      transparent 65%
+    ),
+    radial-gradient(
+      900px 700px at 95% 100%,
+      color-mix(in srgb, var(--color-secondary), transparent 92%),
+      transparent 70%
+    ),
+    color-mix(in srgb, var(--color-background), var(--color-foreground) 2%);
+  color: var(--color-foreground);
+  font-family: var(--font-family);
+  padding: 0;
+  scrollbar-color: color-mix(in srgb, var(--color-primary), transparent 90%) transparent;
+  scrollbar-width: thin;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-family-heading);
+}
+
+.sil-input__label,
+.sil-field__label {
+  margin: 0 !important;
+}

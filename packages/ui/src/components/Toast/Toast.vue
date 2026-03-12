@@ -182,7 +182,7 @@ const dismiss = (id: string) => {
 	}
 
 	&__icon {
-		font-size: 1.25rem;
+		font-size: var(--font-size-l);
 		color: var(--toast-color);
 		flex-shrink: 0;
 		margin-top: 2px;

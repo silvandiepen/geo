@@ -73,7 +73,7 @@ onMounted(newRound);
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: 2rem;
+    font-size: var(--font-size-2xl);
     display: block;
     margin: var(--space-xl) auto;
   }
@@ -89,12 +89,12 @@ onMounted(newRound);
     gap: var(--space-m);
   }
 
-  &__mode { display: flex; gap: 8px; }
+  &__mode { display: flex; gap: var(--space-s); }
 
   &__card { margin-bottom: var(--space-l); }
 
   &__question {
-    font-size: 1.2rem;
+    font-size: var(--font-size-l);
     font-weight: 700;
     text-align: center;
     margin-bottom: var(--space-l);

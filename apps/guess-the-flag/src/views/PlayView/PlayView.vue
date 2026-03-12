@@ -80,7 +80,7 @@ onMounted(newRound);
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: 2rem;
+    font-size: var(--font-size-2xl);
   }
 
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -97,20 +97,20 @@ onMounted(newRound);
   &__filters {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--space-xs);
   }
 
   &__filter-label {
     font-size: var(--font-size-xs);
-    color: var(--color-muted);
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     font-weight: 600;
   }
 
   &__select {
-    padding: 6px 10px;
+    padding: calc(var(--space-xs) * 1.5) calc(var(--space-s) * 1.25);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
-    background: var(--color-surface);
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);
     font-size: var(--font-size-s);
     cursor: pointer;
 
@@ -121,10 +121,10 @@ onMounted(newRound);
 
   &__question {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: var(--font-size-l);
     font-weight: 600;
     margin-bottom: var(--space-l);
-    color: var(--color-muted);
+    color: color-mix(in srgb, var(--color-foreground), transparent 50%);
   }
 
   &__flag {
@@ -149,8 +149,8 @@ onMounted(newRound);
       justify-content: center;
       background: color-mix(in srgb, var(--color-foreground), transparent 95%);
       border-radius: 8px;
-      font-size: 3rem;
-      color: var(--color-muted);
+      font-size: var(--font-size-3xl);
+      color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     }
   }
 

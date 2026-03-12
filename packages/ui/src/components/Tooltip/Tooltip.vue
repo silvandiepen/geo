@@ -150,7 +150,7 @@ const onActionClick = (action: TooltipAction) => {
 		padding: var(--space-xs) var(--space-s);
 		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 		max-width: var(--tooltip-max-width);
-		font-size: 12px;
+		font-size: var(--font-size-xs);
 		line-height: 1.35;
 		white-space: nowrap;
 		display: inline-flex;
@@ -270,7 +270,7 @@ const onActionClick = (action: TooltipAction) => {
 		border: 0;
 		background: color-mix(in srgb, var(--tooltip-fg), transparent 88%);
 		color: var(--tooltip-fg);
-		padding: 2px 8px;
+		padding: 2px var(--space-s);
 		border-radius: var(--border-radius-s);
 		cursor: pointer;
 		font-size: var(--font-size-xs);

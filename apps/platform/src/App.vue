@@ -10,6 +10,5 @@
 <style lang="scss">
 .platform {
   min-height: 100vh;
-  background: var(--color-background);
 }
 </style>

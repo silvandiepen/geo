@@ -48,13 +48,13 @@ const { score } = useCapitalMatch();
   }
 
   &__icon {
-    font-size: 4rem;
+    font-size: var(--font-size-4xl);
     color: #f59e0b;
     display: block;
     margin: 0 auto var(--space-m);
   }
 
-  h1 { font-size: 2rem; font-weight: 800; }
+  h1 { font-size: var(--font-size-2xl); font-weight: 800; }
 
   &__actions {
     display: flex;
