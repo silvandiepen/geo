@@ -3,5 +3,5 @@
 </template>
 <script setup lang="ts"></script>
 <style lang="scss">
-.capital-match-app { min-height: 100vh; background: #fdf2f8; }
+.capital-match-app { min-height: 100vh; background: var(--color-background); }
 </style>

@@ -147,7 +147,7 @@ onMounted(newRound);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f1f5f9;
+      background: color-mix(in srgb, var(--color-foreground), transparent 95%);
       border-radius: 8px;
       font-size: 3rem;
       color: var(--color-muted);

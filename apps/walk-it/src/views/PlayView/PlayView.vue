@@ -2,7 +2,7 @@
   <div class="container walk-play">
     <div v-if="loading" class="walk-play__loading">
       <Icon name="refresh-m" class="walk-play__spin" />
-      <p>{{ t('common.loading') }}</p>
+      <p>{{ t('common.loading.default') }}</p>
     </div>
 
     <template v-else-if="currentRound">
@@ -137,10 +137,10 @@ function handleFinish() {
     font-size: 1.1rem;
     font-weight: 600;
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: var(--border-radius-s);
 
-    &--start { background: #ecfdf5; color: var(--color-primary); }
-    &--target { background: #eff6ff; color: #3b82f6; }
+    &--start  { background: color-mix(in srgb, var(--color-success), transparent 85%); color: var(--color-primary); }
+    &--target { background: color-mix(in srgb, var(--color-info), transparent 85%); color: var(--color-info); }
   }
 
   &__arrow { color: var(--color-muted); font-size: 1.5rem; }
@@ -189,8 +189,22 @@ function handleFinish() {
   border-radius: var(--border-radius);
   font-weight: 500;
 
-  &--success { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
-  &--error   { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
-  &--warning { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+  &--success {
+    background: color-mix(in srgb, var(--color-success), transparent 85%);
+    color: color-mix(in srgb, var(--color-success), var(--color-foreground) 50%);
+    border: 1px solid color-mix(in srgb, var(--color-success), transparent 60%);
+  }
+
+  &--error {
+    background: color-mix(in srgb, var(--color-error), transparent 85%);
+    color: color-mix(in srgb, var(--color-error), var(--color-foreground) 50%);
+    border: 1px solid color-mix(in srgb, var(--color-error), transparent 60%);
+  }
+
+  &--warning {
+    background: color-mix(in srgb, var(--color-warning), transparent 85%);
+    color: color-mix(in srgb, var(--color-warning), var(--color-foreground) 50%);
+    border: 1px solid color-mix(in srgb, var(--color-warning), transparent 60%);
+  }
 }
 </style>

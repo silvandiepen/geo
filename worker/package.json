@@ -1,0 +1,20 @@
+{
+  "name": "@geo/worker",
+  "version": "0.0.1",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev --local",
+    "deploy": "wrangler deploy",
+    "db:migrate": "wrangler d1 execute geo-db --file=../schema.sql",
+    "db:migrate:prod": "wrangler d1 execute geo-db --file=../schema.sql --remote"
+  },
+  "dependencies": {
+    "hono": "^4.4.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240725.0",
+    "typescript": "^5.4.5",
+    "wrangler": "^3.67.0"
+  }
+}

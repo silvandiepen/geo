@@ -16,11 +16,11 @@
     "@geo/types": "workspace:*",
     "@geo/ui": "workspace:*",
     "@geo/utils": "workspace:*",
-    "open-icon": "^1.1.2",
-    "pinia": "^2.1.7",
-    "vue": "^3.4.27",
-    "vue-i18n": "^9.13.1",
-    "vue-router": "^4.3.2"
+    "pinia": "^2.2.0",
+    "vue": "^3.5.0",
+    "vue-i18n": "^11.0.0",
+    "vue-router": "^4.3.2",
+    "@geo/auth": "workspace:*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

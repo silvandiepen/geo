@@ -1,0 +1,31 @@
+name = "geo-platform-worker"
+main = "worker/src/index.ts"
+compatibility_date = "2024-07-25"
+compatibility_flags = ["nodejs_compat"]
+
+# ── D1 Database ──────────────────────────────────────────────────────────────
+[[d1_databases]]
+binding  = "DB"
+database_name = "geo-db"
+database_id   = "replace-with-your-d1-database-id"
+
+# ── Environment variables ─────────────────────────────────────────────────────
+# Set secrets via: wrangler secret put JWT_SECRET
+# [vars]
+# JWT_SECRET = "dev-secret-change-in-production"
+
+# ── Routes ────────────────────────────────────────────────────────────────────
+# The API is served at /api/* and all games are separate static sites.
+# Uncomment and adjust routes for your deployment:
+# routes = [
+#   { pattern = "geo.example.com/api/*", zone_name = "example.com" }
+# ]
+
+# ── Build ─────────────────────────────────────────────────────────────────────
+[build]
+command = ""
+
+# ── Dev settings ─────────────────────────────────────────────────────────────
+[dev]
+port = 8787
+local_protocol = "http"
