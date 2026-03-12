@@ -1,0 +1,171 @@
+
+@mixin setIconAnimation($iconClass) {
+@each $icon in $iconClass{
+  &:has(.#{$iconClass}) {
+    &:hover {
+      .#{$iconClass} {
+        @content;
+      }
+    }
+  }
+}
+}
+
+
+
+.sil-button {
+
+
+  @include setIconAnimation('sil-icon--refresh') {
+    animation: spin 3s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  &:has(.sil-icon--arrow-right),
+  &:has(.sil-icon--arrow-small-right) {
+    &:hover {
+      .sil-icon {
+        animation: iconMoveRight 0.5s ease-in-out;
+      }
+    }
+  }
+
+  @keyframes iconMoveRight {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    50% {
+      transform: translateX(50%);
+    }
+  }
+
+  &:has(.sil-icon--arrow-left),
+  &:has(.sil-icon--arrow-small-left) {
+    &:hover {
+      .sil-icon {
+        animation: iconMoveLeft 0.5s ease-in-out;
+      }
+    }
+  }
+
+  @keyframes iconMoveLeft {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    50% {
+      transform: translateX(-50%);
+    }
+  }
+
+  &:has(.sil-icon--add),
+  &:has(.sil-icon--plus),
+  &:has(.sil-icon--search) {
+    &:hover {
+      .sil-icon {
+        animation: iconMoveUp 0.5s ease-in-out;
+      }
+    }
+  }
+
+  @keyframes iconMoveUp {
+
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  &:has(.sil-icon--cross-small) {
+    &:hover {
+      .sil-icon--cross-small {
+        animation: iconCross 0.5s ease-in-out;
+      }
+    }
+  }
+
+  @keyframes iconCross {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.5) rotate(180deg);
+    }
+
+    100% {
+      transform: scale(1) rotate(180deg);
+    }
+  }
+
+
+  @each $icon in ('sil-icon--down',
+    'sil-icon--arrow-down',
+    'sil-icon--chevron-down',
+    'sil-icon--angle-small-down'
+
+  ) {
+    &:has(.#{$icon}) {
+      &:hover {
+        .#{$icon} {
+          animation: iconDown 0.5s ease-in-out;
+        }
+      }
+    }
+  }
+
+
+  @keyframes iconDown {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(50%);
+    }
+  }
+
+  &:has(.sil-icon--bell) {
+    &:hover {
+      .sil-icon--bell {
+        animation: bellRing 0.5s ease-in-out;
+      }
+    }
+  }
+
+  @keyframes bellRing {
+
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+
+    25% {
+      transform: rotate(15deg);
+    }
+
+    75% {
+      transform: rotate(-15deg);
+    }
+  }
+}
