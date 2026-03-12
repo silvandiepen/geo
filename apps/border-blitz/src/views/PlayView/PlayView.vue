@@ -64,7 +64,7 @@
     </template>
 
     <div v-else class="blitz-play__start">
-      <Button variant="primary" size="lg" @click="newRound">
+      <Button variant="primary" :size="Size.LARGE" @click="newRound">
         <Icon name="play-m" />{{ t('common.play') }}
       </Button>
     </div>
@@ -73,7 +73,7 @@
 
 <script setup lang="ts">
 import { useI18n } from '@geo/i18n';
-import { Button, Icon, Card, Input } from '@geo/ui';
+import { Button, Icon, Card, Input, Size } from '@geo/ui';
 import { ScoreDisplay, GameTimer } from '@geo/game-ui';
 import { useBorderBlitz } from '../../composables/useBorderBlitz';
 

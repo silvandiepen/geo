@@ -6,7 +6,7 @@
         <h1>{{ t('games.guessByHints.name') }}</h1>
         <p>{{ t('games.guessByHints.description') }}</p>
       </div>
-      <Button variant="primary" size="lg" @click="router.push('/play')">
+      <Button variant="primary" :size="Size.LARGE" @click="router.push('/play')">
         <Icon name="play-m" />{{ t('common.play') }}
       </Button>
     </section>
@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useI18n } from '@geo/i18n';
-import { Button, Icon } from '@geo/ui';
+import { Button, Icon, Size } from '@geo/ui';
 
 const router = useRouter();
 const { t } = useI18n();

@@ -14,7 +14,7 @@
           <li>Switch between Country → Capital and Capital → Country modes</li>
         </ul>
       </Card>
-      <Button variant="primary" size="lg" @click="router.push('/play')">
+      <Button variant="primary" :size="Size.LARGE" @click="router.push('/play')">
         <Icon name="play-m" />
         {{ t('common.play') }}
       </Button>
@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useI18n } from '@geo/i18n';
-import { Button, Icon, Card } from '@geo/ui';
+import { Button, Icon, Card, Size } from '@geo/ui';
 
 const router = useRouter();
 const { t } = useI18n();

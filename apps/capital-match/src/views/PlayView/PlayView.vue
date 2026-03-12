@@ -10,12 +10,12 @@
         <div class="capital-play__mode">
           <Button
             :variant="mode === 'countryToCapital' ? 'primary' : 'ghost'"
-            size="sm"
+            :size="Size.SMALL"
             @click="mode = 'countryToCapital'; newRound()"
           >Country → Capital</Button>
           <Button
             :variant="mode === 'capitalToCountry' ? 'primary' : 'ghost'"
-            size="sm"
+            :size="Size.SMALL"
             @click="mode = 'capitalToCountry'; newRound()"
           >Capital → Country</Button>
         </div>
@@ -46,7 +46,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useI18n } from '@geo/i18n';
-import { Button, Icon, Card } from '@geo/ui';
+import { Button, Icon, Card, Size } from '@geo/ui';
 import { MultipleChoice, ScoreDisplay, ResultPanel } from '@geo/game-ui';
 import { useCapitalMatch } from '../../composables/useCapitalMatch';
 
