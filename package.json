@@ -1,0 +1,21 @@
+{
+  "name": "geo-platform",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev:platform": "pnpm --filter platform dev",
+    "dev:walk-it": "pnpm --filter walk-it dev",
+    "dev:guess-the-flag": "pnpm --filter guess-the-flag dev",
+    "dev:guess-by-hints": "pnpm --filter guess-by-hints dev",
+    "dev:border-blitz": "pnpm --filter border-blitz dev",
+    "dev:capital-match": "pnpm --filter capital-match dev",
+    "build": "pnpm -r build",
+    "build:packages": "pnpm --filter './packages/**' build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
