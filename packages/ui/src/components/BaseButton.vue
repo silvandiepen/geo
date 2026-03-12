@@ -9,16 +9,6 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  disabled?: boolean;
-}>();
-
-const emit = defineEmits<{
-  click: [event: MouseEvent];
-}>();
-
 withDefaults(defineProps<{
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
@@ -28,6 +18,10 @@ withDefaults(defineProps<{
   size: 'md',
   disabled: false,
 });
+
+const emit = defineEmits<{
+  click: [event: MouseEvent];
+}>();
 </script>
 
 <style scoped lang="scss">

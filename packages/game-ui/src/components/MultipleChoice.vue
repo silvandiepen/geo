@@ -39,7 +39,7 @@ function select(value: string): void {
 }
 
 function optionClass(value: string): string {
-  if (!props.answered || selected.value !== value) {
+  if (!props.answered) {
     return selected.value === value ? 'mc__option--selected' : '';
   }
   if (value === props.correctValue) return 'mc__option--correct';

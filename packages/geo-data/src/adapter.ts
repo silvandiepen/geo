@@ -69,8 +69,8 @@ export function mapRawCountry(raw: RawCountry): Country {
 async function loadCountries(): Promise<Country[]> {
   if (_cache) return _cache;
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mod = await import('@sil/data' as any);
+    // @ts-expect-error – @sil/data does not ship TypeScript declarations
+    const mod = await import('@sil/data');
     const raw: RawCountry[] = mod.countries ?? mod.default?.countries ?? [];
     _cache = raw.map(mapRawCountry);
   } catch {
