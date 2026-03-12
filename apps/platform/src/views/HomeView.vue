@@ -1,18 +1,14 @@
 <template>
-  <div class="home">
-    <header class="home__header">
-      <div class="home__header-inner">
-        <div class="home__logo">🌍</div>
-        <div>
-          <h1 class="home__title">Geo Platform</h1>
-          <p class="home__subtitle">Geography games powered by world data</p>
+  <div class="platform-home">
+    <AppHeader :nav="[]" :brand="{ name: t('platform.title') }" />
+    <Container max="large" class="platform-home__content">
+      <Section>
+        <div class="platform-home__hero">
+          <Icon name="globe-m" class="platform-home__globe" />
+          <h1 class="platform-home__title">{{ t('platform.title') }}</h1>
+          <p class="platform-home__subtitle">{{ t('platform.subtitle') }}</p>
         </div>
-      </div>
-    </header>
-
-    <main class="home__main">
-      <section class="home__section">
-        <h2 class="home__section-title">Choose a Game</h2>
+        <h2 class="platform-home__section-title">{{ t('platform.chooseGame') }}</h2>
         <div class="games-grid">
           <a
             v-for="game in GAMES"
@@ -25,67 +21,34 @@
             <div class="game-card__content">
               <h3 class="game-card__name">{{ game.name }}</h3>
               <p class="game-card__description">{{ game.description }}</p>
-              <span class="game-card__category">{{ game.category }}</span>
+              <Badge class="game-card__badge">{{ t(`platform.categories.${game.category}`) }}</Badge>
             </div>
-            <div class="game-card__arrow">→</div>
+            <Icon name="arrow-right-m" class="game-card__arrow" />
           </a>
         </div>
-      </section>
-    </main>
+      </Section>
+    </Container>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from '@geo/i18n';
+import { Container, Section, AppHeader, Icon, Badge } from '@sil/ui';
 import { GAMES } from '../models/game-entry';
+
+const { t } = useI18n();
 </script>
 
 <style scoped lang="scss">
 @use "../styles/variables" as *;
 
-.home {
-  &__header {
-    background: white;
-    border-bottom: 1px solid $color-border;
-    padding: $spacing-lg $spacing-xl;
-  }
-
-  &__header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: $spacing-md;
-  }
-
-  &__logo {
-    font-size: 3rem;
-    line-height: 1;
-  }
-
-  &__title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: $color-text;
-    margin-bottom: 4px;
-  }
-
-  &__subtitle {
-    color: $color-text-muted;
-    font-size: 1rem;
-  }
-
-  &__main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: $spacing-xl;
-  }
-
-  &__section-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: $spacing-lg;
-    color: $color-text;
-  }
+.platform-home {
+  &__content { padding-top: $spacing-xl; }
+  &__hero { text-align: center; margin-bottom: $spacing-xl; }
+  &__globe { font-size: 4rem; color: $color-primary; display: block; margin: 0 auto $spacing-md; }
+  &__title { font-size: 2.5rem; font-weight: 800; margin-bottom: $spacing-md; color: $color-text; }
+  &__subtitle { color: $color-text-muted; font-size: 1.125rem; margin-bottom: 0; }
+  &__section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: $spacing-lg; }
 }
 
 .games-grid {
@@ -99,60 +62,20 @@ import { GAMES } from '../models/game-entry';
   align-items: center;
   gap: $spacing-md;
   padding: $spacing-lg;
-  background: white;
+  background: $color-surface;
   border-radius: $radius-lg;
-  border: 2px solid transparent;
+  border-left: 6px solid var(--game-color);
   box-shadow: $shadow-sm;
   text-decoration: none;
   color: inherit;
   transition: all 0.2s;
-  border-left: 6px solid var(--game-color);
 
-  &:hover {
-    box-shadow: $shadow-md;
-    transform: translateY(-2px);
-    border-color: var(--game-color);
-  }
-
-  &__emoji {
-    font-size: 2.5rem;
-    flex-shrink: 0;
-  }
-
-  &__content {
-    flex: 1;
-    min-width: 0;
-  }
-
-  &__name {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: $color-text;
-    margin-bottom: 4px;
-  }
-
-  &__description {
-    font-size: 0.875rem;
-    color: $color-text-muted;
-    margin-bottom: 8px;
-    line-height: 1.4;
-  }
-
-  &__category {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--game-color);
-    background: color-mix(in srgb, var(--game-color) 12%, white);
-    padding: 2px 8px;
-    border-radius: 99px;
-  }
-
-  &__arrow {
-    font-size: 1.25rem;
-    color: $color-text-muted;
-    flex-shrink: 0;
-  }
+  &:hover { box-shadow: $shadow-md; transform: translateY(-2px); }
+  &__emoji { font-size: 2.5rem; flex-shrink: 0; }
+  &__content { flex: 1; min-width: 0; }
+  &__name { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+  &__description { font-size: 0.875rem; color: $color-text-muted; margin-bottom: 8px; line-height: 1.4; }
+  &__badge { font-size: 0.75rem; }
+  &__arrow { color: $color-text-muted; flex-shrink: 0; }
 }
 </style>
