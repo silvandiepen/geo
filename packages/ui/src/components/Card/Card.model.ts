@@ -1,5 +1,4 @@
 import {
-	Color,
 	Size,
 	type Color as ColorType,
 } from '../../types';
@@ -13,7 +12,18 @@ export const CardType = {
 	PLAIN: 'plain',
 };
 
-export const CardColor = Color;
+export const CardColor = {
+	PRIMARY: 'primary',
+	SECONDARY: 'secondary',
+	BACKGROUND: 'background',
+	FOREGROUND: 'foreground',
+	SUCCESS: 'success',
+	ERROR: 'error',
+	WARNING: 'warning',
+	INFO: 'info',
+	THEME: 'theme',
+} as const;
+export type CardColor = (typeof CardColor)[keyof typeof CardColor];
 
 type CardType = (typeof CardType)[keyof typeof CardType];
 

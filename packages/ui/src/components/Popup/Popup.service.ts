@@ -10,7 +10,6 @@ import {
 import PopupSlot from './PopupSlot.vue';
 import type { PopupOptions, PopupInstance, PopupUpdate } from './Popup.model';
 import { logger } from '../../utils/logger';
-import { ConfirmDialog, ProgressDialog, InputDialog } from './components';
 
 const defaulPopupOptions: Partial<PopupOptions> = {
 	config: {
@@ -28,11 +27,7 @@ export const popupRefs = reactive<
 >({});
 
 // Component registry for string-based component resolution
-const componentRegistry: Record<string, Component> = {
-	ConfirmDialog,
-	ProgressDialog,
-	InputDialog,
-};
+const componentRegistry: Record<string, Component> = {};
 
 export interface PopupService {
 	popups: { value: PopupInstance[] };

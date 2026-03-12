@@ -2,8 +2,8 @@ import type { Country, Direction, GeoDistance, Continent } from '@geo/types';
 import { haversineDistance, bearing } from '@geo/utils';
 
 /**
- * Raw data shape from @sil/data – we use a flexible type here since the
- * external package may not export strict types.
+ * Raw data shape from world-countries package.
+ * Matches the REST Countries v3 API format.
  */
 interface RawCountry {
   cca2?: string;
@@ -20,31 +20,37 @@ interface RawCountry {
   currencies?: Record<string, { name?: string; symbol?: string }>;
   languages?: Record<string, string>;
   flags?: { png?: string; svg?: string; emoji?: string };
-  flag?: string;
+  flag?: string; // emoji flag
 }
 
 let _cache: Country[] | null = null;
-
-function mapContinent(raw: RawCountry): string {
-  const continents = raw.continents ?? [];
-  if (continents.length > 0) return continents[0];
-  return raw.region ?? 'Unknown';
-}
+/** Map from cca3 -> cca2 for resolving border codes */
+let _cca3ToCca2: Map<string, string> | null = null;
 
 function mapCurrency(raw: RawCountry): string {
   const currencies = raw.currencies ?? {};
   const keys = Object.keys(currencies);
-  if (keys.length === 0) return '';
-  return keys[0];
+  return keys.length > 0 ? keys[0] : '';
 }
 
 function mapLanguages(raw: RawCountry): string[] {
-  const languages = raw.languages ?? {};
-  return Object.values(languages);
+  return Object.values(raw.languages ?? {});
 }
 
 function mapFlag(raw: RawCountry): string {
-  return raw.flags?.svg ?? raw.flags?.png ?? raw.flags?.emoji ?? raw.flag ?? '';
+  // Prefer svg/png if available; fall back to emoji
+  if (raw.flags?.svg) return raw.flags.svg;
+  if (raw.flags?.png) return raw.flags.png;
+  if (raw.flags?.emoji) return raw.flags.emoji;
+  if (raw.flag) return raw.flag;
+  // Generate a flag URL from flagcdn using cca2
+  if (raw.cca2) return `https://flagcdn.com/${raw.cca2.toLowerCase()}.svg`;
+  return '';
+}
+
+function mapContinent(raw: RawCountry): string {
+  if (raw.continents && raw.continents.length > 0) return raw.continents[0];
+  return raw.region ?? 'Unknown';
 }
 
 export function mapRawCountry(raw: RawCountry): Country {
@@ -54,7 +60,7 @@ export function mapRawCountry(raw: RawCountry): Country {
     continent: mapContinent(raw),
     capital: raw.capital?.[0] ?? '',
     flag: mapFlag(raw),
-    borders: raw.borders ?? [],
+    borders: raw.borders ?? [], // cca3 codes — normalised after full load
     lat: raw.latlng?.[0] ?? 0,
     lng: raw.latlng?.[1] ?? 0,
     population: raw.population ?? 0,
@@ -68,14 +74,35 @@ export function mapRawCountry(raw: RawCountry): Country {
 
 async function loadCountries(): Promise<Country[]> {
   if (_cache) return _cache;
+
+  let raw: RawCountry[] = [];
+
   try {
-    // @ts-expect-error – @sil/data does not ship TypeScript declarations
-    const mod = await import('@sil/data');
-    const raw: RawCountry[] = mod.countries ?? mod.default?.countries ?? [];
-    _cache = raw.map(mapRawCountry);
+    // world-countries exports the array as the default export
+    const mod = await import('world-countries');
+    const data = mod.default ?? (mod as unknown as RawCountry[]);
+    raw = Array.isArray(data) ? data : [];
   } catch {
-    _cache = [];
+    raw = [];
   }
+
+  // First pass: map all countries (borders still contain cca3 codes)
+  const mapped = raw.map(mapRawCountry);
+
+  // Build cca3 -> cca2 lookup from the raw data
+  _cca3ToCca2 = new Map<string, string>();
+  raw.forEach(r => {
+    if (r.cca3 && r.cca2) _cca3ToCca2!.set(r.cca3, r.cca2);
+  });
+
+  // Second pass: normalize border codes from cca3 to cca2
+  mapped.forEach(country => {
+    country.borders = country.borders
+      .map(b => _cca3ToCca2!.get(b) ?? b)
+      .filter(b => b.length === 2); // keep only resolved cca2 codes
+  });
+
+  _cache = mapped;
   return _cache;
 }
 
@@ -110,7 +137,8 @@ export async function searchCountries(query: string): Promise<Country[]> {
 
 export async function getNeighbors(code: string): Promise<Country[]> {
   const countries = await loadCountries();
-  const country = countries.find(c => c.code === code.toUpperCase());
+  const upper = code.toUpperCase();
+  const country = countries.find(c => c.code === upper);
   if (!country) return [];
   return countries.filter(c => country.borders.includes(c.code));
 }
@@ -127,19 +155,18 @@ export async function getFlag(code: string): Promise<string | undefined> {
 
 export async function getSimilarFlags(
   code: string,
-  count: number = 3
+  count = 3
 ): Promise<Country[]> {
   const countries = await loadCountries();
   const target = countries.find(c => c.code === code.toUpperCase());
   if (!target) return [];
 
-  // Heuristic: countries from same region/continent have visually similar flags
+  // Same continent gives visually similar flags as distractors
   const sameContinent = countries.filter(
     c => c.code !== target.code && c.continent === target.continent
   );
 
-  const shuffled = [...sameContinent].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count);
+  return [...sameContinent].sort(() => Math.random() - 0.5).slice(0, count);
 }
 
 export async function getDistanceBetweenCountries(
@@ -152,9 +179,13 @@ export async function getDistanceBetweenCountries(
 
   const distanceKm = haversineDistance(from.lat, from.lng, to.lat, to.lng);
   const deg = bearing(from.lat, from.lng, to.lat, to.lng);
-  const direction = bearingToDirection(deg);
 
-  return { from: fromCode, to: toCode, distanceKm: Math.round(distanceKm), direction };
+  return {
+    from: fromCode,
+    to: toCode,
+    distanceKm: Math.round(distanceKm),
+    direction: bearingToDirection(deg),
+  };
 }
 
 export async function getDirectionBetweenCountries(

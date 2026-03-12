@@ -10,7 +10,7 @@
   "dependencies": {
     "@geo/types": "workspace:*",
     "@geo/utils": "workspace:*",
-    "@sil/data": "^1.0.0"
+    "world-countries": "^5.1.0"
   },
   "devDependencies": {
     "typescript": "^5.4.5",

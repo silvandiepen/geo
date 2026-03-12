@@ -45,7 +45,7 @@
         <Button
           type="submit"
           :disabled="loading"
-          :status="loading ? 'loading' : null"
+          :status="loading ? Status.LOADING : null"
           class="auth-modal__submit"
         >
           {{ mode === 'login' ? t('auth.loginButton') : t('auth.registerButton') }}
@@ -65,6 +65,7 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { Status } from '../../types';
 import Icon from '../Icon/Icon.vue';
 import Button from '../Button/Button.vue';
 import Field from '../Field/Field.vue';

@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import {
 	OPEN_ICON_NAME_TO_FILE,
 	resolveOpenIconName,

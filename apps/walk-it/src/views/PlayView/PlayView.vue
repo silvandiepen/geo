@@ -8,7 +8,7 @@
     <template v-else-if="currentRound">
       <div class="walk-play__header">
         <ScoreDisplay :score="score" :label="{ score: t('common.score'), correct: t('common.correct_count'), streak: t('common.streak') }" />
-        <Button variant="ghost" size="sm" @click="router.push('/')">
+        <Button variant="ghost" :size="Size.SMALL" @click="router.push('/')">
           <Icon name="home-m" />
         </Button>
       </div>
@@ -65,7 +65,7 @@
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from '@geo/i18n';
-import { Button, Icon, Card } from '@geo/ui';
+import { Button, Icon, Card, Size } from '@geo/ui';
 import { ScoreDisplay, ResultPanel } from '@geo/game-ui';
 import { useWalkIt } from '../../composables/useWalkIt';
 

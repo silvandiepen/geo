@@ -1,5 +1,4 @@
 import Tooltip from './Tooltip.vue';
-import TooltipWrapper from './TooltipWrapper.vue';
 
-export { Tooltip, TooltipWrapper };
+export { Tooltip };
 export * from './Tooltip.model';

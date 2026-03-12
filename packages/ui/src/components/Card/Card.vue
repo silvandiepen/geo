@@ -39,7 +39,7 @@ import { computed } from 'vue';
 import type { PropType } from 'vue';
 import { CardType, type BaseCardProps } from './Card.model';
 import { useBemm } from 'bemm';
-import { Color, Size } from '../../types';
+import { Size } from '../../types';
 import { Icon } from '../Icon';
 
 const props = defineProps({
@@ -49,11 +49,11 @@ const props = defineProps({
 	},
 	color: {
 		type: String as PropType<BaseCardProps['color']>,
-		default: Color.BACKGROUND,
+		default: 'background',
 	},
 	themeColor: {
 		type: String as PropType<BaseCardProps['themeColor']>,
-		default: Color.SECONDARY,
+		default: 'secondary',
 	},
 	title: {
 		type: String as PropType<BaseCardProps['title']>,

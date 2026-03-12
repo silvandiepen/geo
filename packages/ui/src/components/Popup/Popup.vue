@@ -45,7 +45,7 @@
 							<Button
 								v-if="popup.config.canClose"
 								:class="bemm('close')"
-								:icon="Icons.CLEAR"
+								:icon="Icons.CLOSE"
 								:iconOnly="true"
 								:size="ButtonSize.SMALL"
 								:variant="'ghost'"
@@ -137,8 +137,9 @@ const popups = computed(() => {
 });
 
 // Event handlers
-const handleKeyPress = (data: { key: string }) => {
-	if (data.key !== 'Escape') {
+const handleKeyPress = (data: unknown) => {
+	const { key } = data as { key: string };
+	if (key !== 'Escape') {
 		return;
 	}
 	const topPopup = popups.value[popups.value.length - 1];
@@ -148,19 +149,17 @@ const handleKeyPress = (data: { key: string }) => {
 	popupService.close(topPopup.id);
 };
 
-const handlePopupOpen = (data: {
-	component: any;
-	id?: string;
-	[key: string]: any;
-}) => {
-	if (data.id) {
-		popupService.showPopup({ ...data, component: data.component });
+const handlePopupOpen = (data: unknown) => {
+	const { component, id, ...rest } = data as { component: any; id?: string; [key: string]: any };
+	if (id) {
+		popupService.showPopup({ ...rest, component, id });
 	}
 };
 
-const handlePopupClose = (data: { id?: string }) => {
-	if (data.id) {
-		popupService.closePopup({ id: data.id });
+const handlePopupClose = (data: unknown) => {
+	const { id } = data as { id?: string };
+	if (id) {
+		popupService.closePopup({ id });
 	}
 };
 

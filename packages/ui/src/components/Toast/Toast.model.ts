@@ -28,6 +28,8 @@ export interface ToastConfig {
 	icon?: string;
 }
 
+export type ToastOptions = ToastConfig;
+
 export const ToastConfigDefault: ToastConfig = {
 	message: '',
 	type: ToastType.INFO,

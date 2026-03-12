@@ -26,7 +26,7 @@
 					@click="dismiss(toast.id)"
 					:aria-label="$t('common.aria.closeNotification')"
 				>
-					<Icon name="close" size="small" />
+					<Icon name="close" :size="Size.SMALL" />
 				</button>
 			</div>
 		</TransitionGroup>
@@ -38,7 +38,7 @@ import { computed } from 'vue';
 import { useBemm } from 'bemm';
 import { ToastType } from './Toast.model';
 import { toastService } from './Toast.service';
-
+import { Size } from '../../types';
 import { Icon } from '../Icon';
 
 const { bemm } = useBemm('toast');
