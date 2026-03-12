@@ -99,7 +99,7 @@ const {
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xxl);
     display: block;
     margin: var(--space-xl) auto;
   }
@@ -169,7 +169,7 @@ const {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: 2px var(--space-s);
+  padding: var(--space-xs) var(--space-s);
   border-radius: var(--border-radius-s);
   font-size: var(--font-size-xs);
   font-weight: 600;

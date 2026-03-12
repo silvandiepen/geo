@@ -185,7 +185,7 @@ const dismiss = (id: string) => {
 		font-size: var(--font-size-l);
 		color: var(--toast-color);
 		flex-shrink: 0;
-		margin-top: 2px;
+		margin-top: var(--space-xs);
 	}
 
 	&__body {

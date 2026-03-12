@@ -55,7 +55,7 @@ defineProps<{
     flex-shrink: 0;
     font-weight: 700;
     font-size: var(--font-size-s);
-    padding: 2px var(--space-s);
+    padding: var(--space-xs) var(--space-s);
     border-radius: var(--border-radius-s);
     background: color-mix(in srgb, currentColor 15%, transparent);
   }

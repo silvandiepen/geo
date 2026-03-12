@@ -80,7 +80,7 @@ onMounted(newRound);
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xxl);
   }
 
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -149,7 +149,7 @@ onMounted(newRound);
       justify-content: center;
       background: color-mix(in srgb, var(--color-foreground), transparent 95%);
       border-radius: 8px;
-      font-size: var(--font-size-3xl);
+      font-size: calc(var(--font-size-xxl) * 1.25);
       color: color-mix(in srgb, var(--color-foreground), transparent 50%);
     }
   }

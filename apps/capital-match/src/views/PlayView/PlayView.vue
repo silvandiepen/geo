@@ -73,7 +73,7 @@ onMounted(newRound);
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xxl);
     display: block;
     margin: var(--space-xl) auto;
   }

@@ -1,5 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
   "include": ["src/**/*", "src/**/*.vue"],
-  "compilerOptions": { "noUnusedLocals": false, "noUnusedParameters": false }
+  "exclude": ["src/**/*.spec.ts"],
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  }
 }

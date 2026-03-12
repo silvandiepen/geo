@@ -270,7 +270,7 @@ const onActionClick = (action: TooltipAction) => {
 		border: 0;
 		background: color-mix(in srgb, var(--tooltip-fg), transparent 88%);
 		color: var(--tooltip-fg);
-		padding: 2px var(--space-s);
+		padding: var(--space-xs) var(--space-s);
 		border-radius: var(--border-radius-s);
 		cursor: pointer;
 		font-size: var(--font-size-xs);

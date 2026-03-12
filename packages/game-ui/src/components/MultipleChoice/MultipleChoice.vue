@@ -63,7 +63,7 @@ function optionClass(value: string): string {
     display: flex;
     align-items: center;
     gap: var(--space-s);
-    padding: 14px var(--space-m);
+    padding: calc(var(--space-s) * 1.75) var(--space-m);
     border: 2px solid var(--color-border);
     border-radius: 10px;
     background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);

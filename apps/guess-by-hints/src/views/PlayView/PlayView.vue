@@ -86,7 +86,7 @@ onMounted(newRound);
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xxl);
     display: block;
     margin: var(--space-xl) auto;
   }
@@ -117,7 +117,7 @@ onMounted(newRound);
     color: var(--color-primary);
     flex-shrink: 0;
     font-size: var(--font-size-l);
-    margin-top: 2px;
+    margin-top: var(--space-xs);
   }
 
   &__hint-label {
@@ -125,7 +125,7 @@ onMounted(newRound);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: color-mix(in srgb, var(--color-foreground), transparent 50%);
-    margin-bottom: 2px;
+    margin-bottom: var(--space-xs);
   }
 
   &__hint-value {
@@ -164,7 +164,7 @@ onMounted(newRound);
 
 .badge {
   display: inline-block;
-  padding: 2px var(--space-s);
+  padding: var(--space-xs) var(--space-s);
   border-radius: var(--border-radius-s);
   font-size: var(--font-size-xs);
   font-weight: 600;

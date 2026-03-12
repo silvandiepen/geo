@@ -39,14 +39,14 @@ const { t } = useI18n();
   }
 
   &__icon {
-    font-size: var(--font-size-4xl);
+    font-size: calc(var(--font-size-xxl) * 2);
     color: var(--color-primary);
     display: block;
     margin: 0 auto var(--space-m);
   }
 
   h1 {
-    font-size: var(--font-size-3xl);
+    font-size: calc(var(--font-size-xxl) * 1.25);
     font-weight: 800;
     margin-bottom: var(--space-m);
   }

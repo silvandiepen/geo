@@ -196,14 +196,14 @@ function handleLogout() {
   }
 
   &__globe {
-    font-size: var(--font-size-4xl);
+    font-size: calc(var(--font-size-xxl) * 2);
     color: var(--color-primary);
     display: block;
     margin: 0 auto var(--space-m);
   }
 
   &__title {
-    font-size: var(--font-size-3xl);
+    font-size: calc(var(--font-size-xxl) * 1.25);
     font-weight: 800;
     margin-bottom: var(--space-m);
     color: var(--color-foreground);
@@ -251,7 +251,7 @@ function handleLogout() {
     text-decoration: none;
   }
 
-  &__emoji { font-size: var(--font-size-3xl); flex-shrink: 0; }
+  &__emoji { font-size: calc(var(--font-size-xxl) * 1.25); flex-shrink: 0; }
   &__content { flex: 1; min-width: 0; }
   &__name { font-size: var(--font-size-l); font-weight: 700; margin-bottom: var(--space-xs); }
 
@@ -267,7 +267,7 @@ function handleLogout() {
 
 .badge {
   display: inline-block;
-  padding: 2px var(--space-s);
+  padding: var(--space-xs) var(--space-s);
   border-radius: var(--border-radius-s);
   background: color-mix(in srgb, var(--color-primary), transparent 85%);
   color: var(--color-primary);

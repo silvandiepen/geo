@@ -65,7 +65,7 @@ const fieldClasses = computed(() =>
 
 .sil-field__required {
   color: var(--color-error, #ef4444);
-  margin-inline-start: 2px;
+  margin-inline-start: var(--space-xs);
 }
 
 .sil-field__control {

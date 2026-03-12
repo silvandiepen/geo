@@ -48,13 +48,13 @@ const { score } = useWalkIt();
   }
 
   &__icon {
-    font-size: var(--font-size-4xl);
+    font-size: calc(var(--font-size-xxl) * 2);
     color: #f59e0b;
     display: block;
     margin: 0 auto var(--space-m);
   }
 
-  h1 { font-size: var(--font-size-2xl); font-weight: 800; }
+  h1 { font-size: var(--font-size-xxl); font-weight: 800; }
 
   &__actions {
     display: flex;

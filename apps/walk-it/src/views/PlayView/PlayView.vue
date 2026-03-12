@@ -107,7 +107,7 @@ function handleFinish() {
 
   &__spin {
     animation: spin 1s linear infinite;
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xxl);
   }
 
   @keyframes spin { to { transform: rotate(360deg); } }

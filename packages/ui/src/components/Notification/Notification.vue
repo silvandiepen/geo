@@ -113,7 +113,7 @@ function dismiss() {
   border: none;
   cursor: pointer;
   color: currentColor;
-  padding: 2px;
+  padding: var(--space-xs);
   border-radius: var(--border-radius-s, 4px);
   display: flex;
   align-items: center;
