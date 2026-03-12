@@ -4,16 +4,8 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [vue()],
+  server: { port: 5173 },
   resolve: {
-    alias: {
-      '@': resolve(__dirname, './src'),
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use "@/styles/variables" as *;`,
-      },
-    },
+    alias: { '@': resolve(__dirname, './src') },
   },
 });

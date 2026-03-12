@@ -122,7 +122,7 @@ const cardStyles = computed((): Record<string, string> => {
 
 <style lang="scss">
 .sil-card {
-
+	$b: &;
 
 	--int-border-width: 1px;
 	--int-card-border-color: var(
@@ -240,7 +240,7 @@ const cardStyles = computed((): Record<string, string> => {
 
 	&--small {
 		--int-card-title-size: var(--font-size-s);
-		&.sil-card--outline {
+		&#{$b}--outline {
 			--int-card-title-font-weight: 600;
 			--int-card-border-color_header: transparent;
 		}
@@ -299,7 +299,7 @@ const cardStyles = computed((): Record<string, string> => {
 		opacity: 0.8;
 	}
 
-	&--sticky-header > .sil-card__header {
+	&--sticky-header > #{$b}__header {
 		position: sticky;
 		top: 0;
 		z-index: 5;
@@ -350,13 +350,13 @@ const cardStyles = computed((): Record<string, string> => {
 			var(--int-card-title-font-weight, 500)
 		);
 
-		& + .sil-card__description {
+		& + #{$b}__description {
 			margin-top: var(--space-s);
 		}
 	}
 
-	&__header-title{
-		& + .sil-card__description {
+	&__header-title {
+		& + #{$b}__description {
 			opacity: .5;
 			margin-top: var(--space-s);
 		}

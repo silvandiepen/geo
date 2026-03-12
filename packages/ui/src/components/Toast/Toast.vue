@@ -74,6 +74,8 @@ const dismiss = (id: string) => {
 }
 
 .toast {
+	$b: &;
+
 	--toast-border-color: color-mix(
 		in srgb,
 		var(--toast-color),

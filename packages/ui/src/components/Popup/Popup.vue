@@ -209,6 +209,7 @@ const hasSlot = (name: string): boolean => {
 
 <style lang="scss">
 .popup {
+	$b: &;
 
 	--popup-ease: var(--bezier, cubic-bezier(0.22, 1, 0.36, 1));
 	--popup-border-radius: var(--border-radius);
@@ -365,13 +366,13 @@ const hasSlot = (name: string): boolean => {
 	}
 
 	&--bottom {
-		.popup__wrapper {
+		#{$b}__wrapper {
 			align-items: flex-end;
 		}
 	}
 
 	&--top {
-		.popup__wrapper {
+		#{$b}__wrapper {
 			align-items: flex-start;
 		}
 	}
@@ -397,7 +398,7 @@ const hasSlot = (name: string): boolean => {
 		flex-direction: row;
 		justify-content: space-between;
 
-		&:has(.popup__close) {
+		&:has(#{$b}__close) {
 			padding-right: var(--space-xl);
 		}
 	}
@@ -440,7 +441,7 @@ const hasSlot = (name: string): boolean => {
 		align-items: center;
 		justify-content: flex-end;
 
-		&:has(.popup__close) {
+		&:has(#{$b}__close) {
 			padding-right: var(--space-xl);
 		}
 	}
@@ -456,7 +457,7 @@ const hasSlot = (name: string): boolean => {
 			flex-direction: column-reverse;
 			gap: var(--space-xs);
 
-			.popup__action {
+			#{$b}__action {
 				width: 100%;
 			}
 		}
@@ -467,11 +468,11 @@ const hasSlot = (name: string): boolean => {
 	}
 
 	&--closing {
-		.popup__container {
+		#{$b}__container {
 			animation: containerGoAway 0.3s var(--popup-ease) forwards;
 		}
 
-		.popup__background {
+		#{$b}__background {
 			pointer-events: none;
 			animation: backgroundFadeOut 0.3s var(--popup-ease) forwards;
 		}
@@ -482,21 +483,21 @@ const hasSlot = (name: string): boolean => {
 	--int-popup-content-border-radius-bottom-left: var(--popup-border-radius);
 	--int-popup-content-border-radius-bottom-right: var(--popup-border-radius);
 
-	&:has(.popup__header) {
+	&:has(#{$b}__header) {
 		--int-popup-content-border-radius-top-left: 0;
 		--int-popup-content-border-radius-top-right: 0;
 	}
-	&:has(.popup__footer) {
+	&:has(#{$b}__footer) {
 		--int-popup-content-border-radius-bottom-left: 0;
 		--int-popup-content-border-radius-bottom-right: 0;
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.popup__container {
+	#{$b}__container {
 		animation: containerComeIn 0.15s linear both;
 	}
-	.popup__background {
+	#{$b}__background {
 		animation: backgroundFadeIn 0.15s linear both;
 	}
 }

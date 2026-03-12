@@ -8,9 +8,8 @@
 </script>
 
 <style lang="scss">
-@use "./styles/variables" as *;
 .platform {
   min-height: 100vh;
-  background: $color-bg;
+  background: var(--color-background);
 }
 </style>

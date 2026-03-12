@@ -4,7 +4,6 @@ import { createGeoI18n } from '@geo/i18n';
 import { setupIcons } from '@geo/ui';
 import App from './App.vue';
 import router from './router';
-import '@sil/ui/style.css';
 import './styles/global.scss';
 
 const app = createApp(App);
