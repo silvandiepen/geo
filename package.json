@@ -1,0 +1,26 @@
+{
+  "name": "geo-platform",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev:platform": "pnpm --filter platform dev",
+    "dev:walk-it": "pnpm --filter walk-it dev",
+    "dev:guess-the-flag": "pnpm --filter guess-the-flag dev",
+    "dev:guess-by-hints": "pnpm --filter guess-by-hints dev",
+    "dev:border-blitz": "pnpm --filter border-blitz dev",
+    "dev:capital-match": "pnpm --filter capital-match dev",
+    "dev:worker": "wrangler dev --config wrangler.toml",
+    "build": "pnpm -r build",
+    "build:packages": "pnpm --filter './packages/**' build",
+    "deploy:worker": "wrangler deploy --config wrangler.toml",
+    "db:migrate": "wrangler d1 execute geo-db --file=worker/schema.sql",
+    "db:migrate:prod": "wrangler d1 execute geo-db --file=worker/schema.sql --remote",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "wrangler": "^3.67.0"
+  }
+}

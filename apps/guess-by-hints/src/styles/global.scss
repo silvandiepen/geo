@@ -1,0 +1,4 @@
+// Import the shared design system from @geo/ui.
+// This generates all --color-*, --space-*, --font-size-*, --border-radius-*
+// and --font-family-* custom properties from the $base-colors / $token-colors maps.
+@use "@geo/ui/src/styles/global";

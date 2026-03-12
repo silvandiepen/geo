@@ -1,0 +1,78 @@
+@use "sass:color";
+@use "sass:math";
+@use "sass:map";
+
+// ─── WCAG luminance + contrast helpers ───────────────────────────────────────
+
+@function _linearize($channel) {
+  @if $channel <= 0.03928 {
+    @return math.div($channel, 12.92);
+  } @else {
+    @return math.pow(math.div($channel + 0.055, 1.055), 2.4);
+  }
+}
+
+@function luminance($c) {
+  $r: math.div(color.channel($c, "red"), 255);
+  $g: math.div(color.channel($c, "green"), 255);
+  $b: math.div(color.channel($c, "blue"), 255);
+
+  @return 0.2126 * _linearize($r) + 0.7152 * _linearize($g) + 0.0722 * _linearize($b);
+}
+
+@function contrast-color($c, $light: #f8f4ec, $dark: #131216) {
+  @if luminance($c) > 0.35 {
+    @return $dark;
+  } @else {
+    @return $light;
+  }
+}
+
+// ─── Base palette ─────────────────────────────────────────────────────────────
+// Exact copy of $base-colors from silvandiepen/home
+
+$base-colors: (
+  "blue":      #7b8fb7,
+  "darkblue":  #171618,
+  "indigo":    #5b5f89,
+  "cyan":      #7ea2cb,
+  "teal":      #62a89d,
+  "emerald":   #5ca477,
+  "green":     #89a96e,
+  "darkgreen": #355d4c,
+  "lime":      #b4c77f,
+  "yellow":    #d9c26f,
+  "amber":     #d3a85d,
+  "orange":    #d9895d,
+  "red":       #c1646c,
+  "rose":      #d290a6,
+  "pink":      #d7a1bf,
+  "purple":    #aa8fbf,
+  "stone":     #8f877d,
+  "gray":      #99958f,
+  "slate":     #8e95a0,
+  "dark":      #131216,
+  "light":     #f8f4ec,
+  "jade":      #5f9d93,
+  "silver":    #d8d0c2,
+  "off-white": #f0eadd
+) !default;
+
+// ─── Token palette ─────────────────────────────────────────────────────────────
+// Semantic tokens — all CSS custom properties are generated from this map.
+// Components should only reference --color-<token>, never --color-<base>.
+
+$token-colors: (
+  primary:    map.get($base-colors, "pink"),
+  secondary:  map.get($base-colors, "slate"),
+  tertiary:   map.get($base-colors, "green"),
+  success:    map.get($base-colors, "green"),
+  info:       map.get($base-colors, "blue"),
+  warning:    map.get($base-colors, "amber"),
+  error:      map.get($base-colors, "red"),
+  dark:       map.get($base-colors, "dark"),
+  light:      map.get($base-colors, "light"),
+  border:     map.get($base-colors, "silver"),
+  background: map.get($base-colors, "light"),
+  foreground: map.get($base-colors, "darkblue")
+) !default;
