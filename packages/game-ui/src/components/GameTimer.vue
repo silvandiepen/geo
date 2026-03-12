@@ -1,14 +1,14 @@
 <template>
-  <div :class="['game-timer', { 'game-timer--warning': timeLeft <= warningThreshold }]">
+  <div class="game-timer" :class="{ 'game-timer--warning': timeLeft <= (warningThreshold ?? 10) }">
+    <Icon name="timer-m" class="game-timer__icon" />
     <span class="game-timer__value">{{ formattedTime }}</span>
-    <div class="game-timer__bar">
-      <div class="game-timer__fill" :style="{ width: `${percentage}%` }" />
-    </div>
+    <Progress :value="percentage" class="game-timer__bar" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onUnmounted, watch } from 'vue';
+import { ref, computed, watch, onUnmounted } from 'vue';
+import { Icon, Progress } from '@sil/ui';
 
 const props = defineProps<{
   totalSeconds: number;
@@ -60,35 +60,30 @@ onUnmounted(stop);
 
 <style scoped lang="scss">
 .game-timer {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+
+  &__icon {
+    color: var(--color-primary, #3b82f6);
+  }
 
   &__value {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #111827;
+    min-width: 3ch;
+    text-align: right;
   }
 
   &__bar {
-    width: 200px;
-    height: 8px;
-    background: #e5e7eb;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  &__fill {
-    height: 100%;
-    background: #22c55e;
-    border-radius: 4px;
-    transition: width 1s linear, background 0.5s;
+    width: 120px;
   }
 
   &--warning {
-    .game-timer__value { color: #ef4444; }
-    .game-timer__fill { background: #ef4444; }
+    .game-timer__icon,
+    .game-timer__value {
+      color: var(--color-danger, #ef4444);
+    }
   }
 }
 </style>

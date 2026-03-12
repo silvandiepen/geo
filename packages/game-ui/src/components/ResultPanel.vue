@@ -1,12 +1,17 @@
 <template>
-  <div :class="['result-panel', result.correct ? 'result-panel--correct' : 'result-panel--wrong']">
-    <div class="result-panel__icon">{{ result.correct ? '✅' : '❌' }}</div>
-    <div class="result-panel__details">{{ result.details }}</div>
-    <div class="result-panel__score">+{{ result.score }} pts</div>
-  </div>
+  <Alert :variant="result.correct ? 'success' : 'error'" class="result-panel">
+    <div class="result-panel__content">
+      <Icon :name="result.correct ? 'check-m' : 'close-m'" class="result-panel__icon" />
+      <span class="result-panel__details">{{ result.details }}</span>
+      <Badge :variant="result.correct ? 'success' : 'danger'" class="result-panel__score">
+        +{{ result.score }} pts
+      </Badge>
+    </div>
+  </Alert>
 </template>
 
 <script setup lang="ts">
+import { Icon, Alert, Badge } from '@sil/ui';
 import type { Result } from '@geo/types';
 
 defineProps<{
@@ -16,27 +21,25 @@ defineProps<{
 
 <style scoped lang="scss">
 .result-panel {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  border-radius: 10px;
-  font-weight: 500;
-
-  &--correct {
-    background: #f0fdf4;
-    border: 2px solid #22c55e;
-    color: #15803d;
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
-  &--wrong {
-    background: #fef2f2;
-    border: 2px solid #ef4444;
-    color: #b91c1c;
+  &__icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
   }
 
-  &__icon { font-size: 1.5rem; }
-  &__details { flex: 1; }
-  &__score { font-weight: 700; font-size: 1.1rem; }
+  &__details {
+    flex: 1;
+    font-weight: 500;
+  }
+
+  &__score {
+    flex-shrink: 0;
+    font-weight: 700;
+  }
 }
 </style>

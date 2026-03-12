@@ -9,7 +9,10 @@
   "dependencies": {
     "@geo/ui": "workspace:*",
     "@geo/types": "workspace:*",
-    "vue": "^3.4.27"
+    "@sil/ui": "^0.1.8",
+    "open-icon": "^1.1.2",
+    "vue": "^3.4.27",
+    "vue-i18n": "^9.13.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

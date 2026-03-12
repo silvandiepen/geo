@@ -1,4 +1,52 @@
-export { default as BaseButton } from './components/BaseButton.vue';
-export { default as BaseCard } from './components/BaseCard.vue';
-export { default as BaseInput } from './components/BaseInput.vue';
-export { default as BaseModal } from './components/BaseModal.vue';
+// Re-export everything from @sil/ui
+export {
+  Button,
+  ButtonGroup,
+  Icon,
+  Card,
+  Container,
+  Badge,
+  ContextMenu,
+  ContextPanel,
+  ContextMenuItems,
+  Tab,
+  TabPanel,
+  Tabs,
+  CircularProgress,
+  StatsCard,
+  OptionItem,
+  Progress,
+  ThemeToggle,
+  SearchInput,
+  TextInput,
+  SelectInput,
+  TInputTextArea,
+  Section,
+  PageHeader,
+  Table,
+  TableRow,
+  TableCell,
+  AppHeader,
+  AppSidebar,
+  SettingsLayout,
+  Popup,
+  PopupSlot,
+  popupService,
+  Alert,
+  AlertVariant,
+  EmptyState,
+  Tooltip,
+  TooltipPosition,
+  Toast,
+  toastService,
+  ToastType,
+  ToastPosition,
+  Colors,
+  Size,
+} from '@sil/ui';
+
+// Re-export open-icon Vue integration
+export { IconRegistryPlugin, useIconRegistry } from 'open-icon/vue';
+
+// Icon setup helper
+export { setupIcons } from './setup';
