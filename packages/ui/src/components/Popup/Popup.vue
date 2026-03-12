@@ -118,10 +118,10 @@
 <script setup lang="ts">
 import { useBemm } from 'bemm';
 import { popupService, popupRefs } from './Popup.service';
-import { Icons } from '@/types';
-import { eventBus } from '@/utils/eventBus';
-import { Button, ButtonSize } from '@/components/ui/Button';
-import { Color } from '@/types';
+import { Icons } from '../../types';
+import { eventBus } from '../../utils/eventBus';
+import { Button, ButtonSize } from '../Button';
+import { Color } from '../../types';
 import {
 	type ComponentPublicInstance,
 	computed,
@@ -209,7 +209,7 @@ const hasSlot = (name: string): boolean => {
 
 <style lang="scss">
 .popup {
-	$b: &;
+
 	--popup-ease: var(--bezier, cubic-bezier(0.22, 1, 0.36, 1));
 	--popup-border-radius: var(--border-radius);
 	position: fixed;
@@ -354,7 +354,7 @@ const hasSlot = (name: string): boolean => {
 		background: var(--popup-container-background, var(--color-background));
 	}
 
-	&__header + #{$b} &__close {
+	&__header + .popup &__close {
 		--button-background-color: transparent;
 		--button-background-color--hover: var(--color-tertiary);
 		position: absolute;

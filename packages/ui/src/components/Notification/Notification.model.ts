@@ -1,9 +1,8 @@
-export const NotificationStatus = {
-	INFO: 'info',
-	SUCCESS: 'success',
-	WARNING: 'warning',
-	ERROR: 'error',
-} as const;
+export type NotificationType = 'success' | 'error' | 'warning' | 'info';
 
-export type NotificationStatus =
-	(typeof NotificationStatus)[keyof typeof NotificationStatus];
+export interface NotificationProps {
+  message: string;
+  type?: NotificationType;
+  dismissible?: boolean;
+  dismissLabel?: string;
+}

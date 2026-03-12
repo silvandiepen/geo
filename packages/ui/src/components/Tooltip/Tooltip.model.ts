@@ -1,4 +1,4 @@
-import type { Color } from '@/types';
+import type { Color } from '../../types';
 
 export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
 export type TooltipTrigger = 'hover' | 'click' | 'manual';

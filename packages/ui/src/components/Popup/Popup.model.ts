@@ -1,5 +1,5 @@
 import { type Slot, type Component, type VNode } from 'vue';
-import type { Color } from '@/types';
+import type { Color } from '../../types';
 
 export const PopupPosition = {
 	CENTER: 'center',

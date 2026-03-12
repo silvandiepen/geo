@@ -1,132 +1,126 @@
 <template>
-	<article
-		:class="bemm('', [status])"
-		:role="role"
-		:aria-live="ariaLive"
-		:style="`--notification-color: var(--color-${status})`"
-	>
-		<Icon :name="resolvedIcon" :class="bemm('icon')" />
-		<div :class="bemm('content')">
-			<p v-if="title" :class="bemm('title')">{{ title }}</p>
-			<p :class="bemm('message')">
-				<slot>{{ message }}</slot>
-			</p>
-		</div>
-	</article>
+  <div v-if="visible" :class="notificationClasses" role="alert">
+    <Icon v-if="iconName" :name="iconName" class="sil-notification__icon" />
+    <span class="sil-notification__message">{{ message }}</span>
+    <button
+      v-if="dismissible"
+      class="sil-notification__close"
+      type="button"
+      :aria-label="dismissLabel"
+      @click="dismiss"
+    >
+      <Icon name="action/close" />
+    </button>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useBemm } from 'bemm';
-import { Icon } from '@/components/ui/Icon';
-import { Icons, type IconNameOrString } from '@/types';
-import {
-	NotificationStatus,
-	type NotificationStatus as NotificationStatusType,
-} from './Notification.model';
+import { Icons } from '../../types';
+import Icon from '../Icon/Icon.vue';
+import type { NotificationType } from './Notification.model';
+
+defineOptions({ name: 'SilNotification' });
 
 const props = withDefaults(
-	defineProps<{
-		status?: NotificationStatusType;
-		title?: string;
-		message?: string;
-		icon?: IconNameOrString | null;
-	}>(),
-	{
-		status: NotificationStatus.INFO,
-		title: '',
-		message: '',
-		icon: null,
-	}
+  defineProps<{
+    message: string;
+    type?: NotificationType;
+    dismissible?: boolean;
+    dismissLabel?: string;
+  }>(),
+  {
+    type: 'info',
+    dismissible: false,
+    dismissLabel: 'Dismiss',
+  }
 );
 
-const bemm = useBemm('sil-notification', {
-	return: 'string',
-	includeBaseClass: true,
-});
+const emit = defineEmits<{
+  dismiss: [];
+}>();
 
-const statusIcons: Record<NotificationStatusType, IconNameOrString> = {
-	[NotificationStatus.INFO]: Icons.INFO,
-	[NotificationStatus.SUCCESS]: Icons.CHECK_CIRCLE,
-	[NotificationStatus.WARNING]: Icons.EXCLAMATION,
-	[NotificationStatus.ERROR]: Icons.CROSS,
+const visible = ref(true);
+
+const bemm = useBemm('sil-notification', { return: 'string', includeBaseClass: true });
+
+const iconMap: Record<string, string> = {
+  success: Icons.CHECK,
+  error: Icons.EXCLAMATION,
+  warning: Icons.EXCLAMATION,
+  info: 'action/info',
 };
 
-const resolvedIcon = computed(
-	() => props.icon || statusIcons[props.status] || Icons.INFO
+const iconName = computed(() => iconMap[props.type ?? 'info']);
+
+const notificationClasses = computed(() =>
+  bemm('', { [`type-${props.type}`]: true, dismissible: props.dismissible })
 );
 
-const role = computed(() =>
-	props.status === NotificationStatus.ERROR ? 'alert' : 'status'
-);
-
-const ariaLive = computed(() =>
-	props.status === NotificationStatus.ERROR ? 'assertive' : 'polite'
-);
+function dismiss() {
+  visible.value = false;
+  emit('dismiss');
+}
 </script>
 
-<style lang="scss">
+<style>
 .sil-notification {
-	--notification-color: var(--color-info);
-	--notification-bg-color: color-mix(
-		in srgb,
-		var(--notification-color),
-		transparent 90%
-	);
-	--notification-text-color: color-mix(
-		in srgb,
-		var(--notification-color),
-		var(--color-foreground) 80%
-	);
+  display: flex;
+  align-items: center;
+  gap: var(--space-s, 8px);
+  padding: var(--space-s, 12px) var(--space-m, 16px);
+  border-radius: var(--border-radius, 8px);
+  font-size: var(--font-size-s, 0.875rem);
+  line-height: 1.5;
+}
 
-	display: flex;
-	align-items: flex-start;
-	gap: var(--space-s);
-	padding: var(--space-s) var(--space-m);
-	border: 1px solid var(--notification-color);
-	border-radius: var(--border-radius);
-	background: var(--notification-bg-color);
-	color: var(--notification-text-color);
+.sil-notification--type-success {
+  background: color-mix(in srgb, var(--color-success, #22c55e), transparent 85%);
+  color: var(--color-success, #22c55e);
+  border: 1px solid color-mix(in srgb, var(--color-success, #22c55e), transparent 60%);
+}
 
-	&--info {
-		--notification-color: var(--color-info);
-	}
+.sil-notification--type-error {
+  background: color-mix(in srgb, var(--color-error, #ef4444), transparent 85%);
+  color: var(--color-error, #ef4444);
+  border: 1px solid color-mix(in srgb, var(--color-error, #ef4444), transparent 60%);
+}
 
-	&--success {
-		--notification-color: var(--color-success);
-	}
+.sil-notification--type-warning {
+  background: color-mix(in srgb, var(--color-warning, #f59e0b), transparent 85%);
+  color: var(--color-warning, #f59e0b);
+  border: 1px solid color-mix(in srgb, var(--color-warning, #f59e0b), transparent 60%);
+}
 
-	&--warning {
-		--notification-color: var(--color-warning);
-	}
+.sil-notification--type-info {
+  background: color-mix(in srgb, var(--color-info, #3b82f6), transparent 85%);
+  color: var(--color-info, #3b82f6);
+  border: 1px solid color-mix(in srgb, var(--color-info, #3b82f6), transparent 60%);
+}
 
-	&--error {
-		--notification-color: var(--color-error);
-	}
+.sil-notification__message {
+  flex: 1;
+  font-weight: 500;
+}
 
-	&__icon {
-		color: var(--notification-color);
-		font-size: var(--font-size-m);
-		margin-top: 2px;
-		flex-shrink: 0;
-	}
+.sil-notification__icon {
+  flex-shrink: 0;
+}
 
-	&__content {
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-	}
+.sil-notification__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+  padding: 2px;
+  border-radius: var(--border-radius-s, 4px);
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+}
 
-	&__title {
-		margin: 0;
-		font-size: var(--font-size-s);
-		font-weight: var(--font-weight-bold);
-	}
-
-	&__message {
-		margin: 0;
-		font-size: var(--font-size-s);
-		line-height: 1.4;
-	}
+.sil-notification__close:hover {
+  opacity: 1;
 }
 </style>

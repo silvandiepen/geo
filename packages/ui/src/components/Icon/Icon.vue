@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
 import type { IconNameOrString } from './Icon.model';
-import { Color, Size } from '@/types';
+import { Color, Size } from '../../types';
 import { getIconLoader } from './Icon.data';
 
 defineOptions({

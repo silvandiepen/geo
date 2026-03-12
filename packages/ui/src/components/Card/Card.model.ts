@@ -2,8 +2,8 @@ import {
 	Color,
 	Size,
 	type Color as ColorType,
-} from '@/types';
-import type { IconNameOrString } from '@/types';
+} from '../../types';
+import type { IconNameOrString } from '../../types';
 
 export const CardType = {
 	DEFAULT: 'default',

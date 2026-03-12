@@ -55,13 +55,13 @@ import type { VNode, VNodeArrayChildren } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { ButtonProps, ButtonRouteLocation } from './Button.model';
 import { useBemm } from 'bemm';
-import { NotificationStatus, Size, Status } from '@/types';
+import { NotificationStatus, Size, Status } from '../../types';
 import { RouterLink } from 'vue-router';
 import type { RouteLocationRaw } from 'vue-router';
 import { Icon } from '../Icon';
-import { Icons } from '@/types';
-import { Tooltip } from '@/components/ui/Tooltip';
-import type { TooltipOptions } from '@/components/ui/Tooltip';
+import { Icons } from '../../types';
+import { Tooltip } from '../Tooltip';
+import type { TooltipOptions } from '../Tooltip';
 
 const props = defineProps({
 	component: {
@@ -281,9 +281,99 @@ const onTooltipReset = () => {
 </script>
 
 <style lang="scss">
-@use './Button.Animations.scss';
 .sil-button {
-	$b: &;
+
+  &:has(.sil-icon--refresh) {
+    &:hover {
+      .sil-icon--refresh {
+        animation: spin 3s linear infinite;
+      }
+    }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  &:has(.sil-icon--arrow-right),
+  &:has(.sil-icon--arrow-small-right) {
+    &:hover {
+      .sil-icon { animation: iconMoveRight 0.5s ease-in-out; }
+    }
+  }
+
+  @keyframes iconMoveRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(50%); }
+  }
+
+  &:has(.sil-icon--arrow-left),
+  &:has(.sil-icon--arrow-small-left) {
+    &:hover {
+      .sil-icon { animation: iconMoveLeft 0.5s ease-in-out; }
+    }
+  }
+
+  @keyframes iconMoveLeft {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-50%); }
+  }
+
+  &:has(.sil-icon--add),
+  &:has(.sil-icon--plus),
+  &:has(.sil-icon--search) {
+    &:hover {
+      .sil-icon { animation: iconMoveUp 0.5s ease-in-out; }
+    }
+  }
+
+  @keyframes iconMoveUp {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  &:has(.sil-icon--cross-small) {
+    &:hover {
+      .sil-icon--cross-small { animation: iconCross 0.5s ease-in-out; }
+    }
+  }
+
+  @keyframes iconCross {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5) rotate(180deg); }
+    100% { transform: scale(1) rotate(180deg); }
+  }
+
+  &:has(.sil-icon--down),
+  &:has(.sil-icon--arrow-down),
+  &:has(.sil-icon--chevron-down),
+  &:has(.sil-icon--angle-small-down) {
+    &:hover {
+      .sil-icon { animation: iconDown 0.5s ease-in-out; }
+    }
+  }
+
+  @keyframes iconDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(50%); }
+  }
+
+  &:has(.sil-icon--bell) {
+    &:hover {
+      .sil-icon--bell { animation: bellRing 0.5s ease-in-out; }
+    }
+  }
+
+  @keyframes bellRing {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+  }
+}
+
+.sil-button {
+
 	background-color: transparent;
 	border: none;
 	display: flex;
@@ -434,10 +524,10 @@ const onTooltipReset = () => {
 	&:hover {
 		text-decoration: none !important;
 
-		#{$b}__container {
+		.sil-button__container {
 			color: var(--int-button-text--hover);
 		}
-		#{$b}__background {
+		.sil-button__background {
 			background-color: var(--int-button-background-color--hover);
 			animation: bumpBackground 0.25s ease-in-out;
 			animation-fill-mode: forwards;
@@ -451,15 +541,15 @@ const onTooltipReset = () => {
 				}
 			}
 		}
-		#{$b}__icon {
+		.sil-button__icon {
 			color: var(--int-button-icon-color--hover);
 		}
 
-		&:has(#{$b}__icon--hover) {
-			#{$b}__icon--hover {
+		&:has(.sil-button__icon--hover) {
+			.sil-button__icon--hover {
 				opacity: 1;
 			}
-			#{$b}__icon:not(#{$b}__icon--hover) {
+			.sil-button__icon:not(.sil-button__icon--hover) {
 				opacity: 0;
 			}
 		}
@@ -499,7 +589,7 @@ const onTooltipReset = () => {
 		justify-content: center;
 		aspect-ratio: 1/1;
 		height: fit-content;
-		#{$b}__container {
+		.sil-button__container {
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -520,10 +610,10 @@ const onTooltipReset = () => {
 	&--full-width {
 		width: 100%;
 		justify-content: center;
-		#{$b}__container {
+		.sil-button__container {
 			justify-content: space-between;
 			width: 100%;
-			#{$b}__text {
+			.sil-button__text {
 				width: 100%;
 				text-align: left;
 			}
@@ -601,7 +691,7 @@ const onTooltipReset = () => {
 		pointer-events: none;
 		opacity: 0.25;
 
-		#{$b}__background {
+		.sil-button__background {
 			transform: translate(-50%, -50%) !important;
 		}
 

@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 import { computed, ref, watch, nextTick, useSlots } from 'vue';
 import { useBemm } from 'bemm';
-import type { Color } from '@/types';
+import type { Color } from '../../types';
 import type { TooltipAction, TooltipOptions } from './Tooltip.model';
 
 defineOptions({

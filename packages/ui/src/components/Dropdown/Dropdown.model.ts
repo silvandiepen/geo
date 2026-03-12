@@ -1,5 +1,5 @@
-import { Color, Status } from '@/types';
-import type { IconType } from '@/components/ui/Icon/Icon.model';
+import { Color, Status } from '../../types';
+import type { IconType } from '../Icon/Icon.model';
 
 export type DropdownItem = {
 	label: string;

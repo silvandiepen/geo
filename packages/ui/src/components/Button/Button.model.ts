@@ -1,9 +1,9 @@
-import { Color } from '@/types/color';
-import { Size } from '@/types/size';
-import { NotificationStatus, Status } from '@/types/status';
-import { Icons } from '@/types/icons';
+import { Color } from '../../types';
+import { Size } from '../../types';
+import { NotificationStatus, Status } from '../../types';
+import { Icons } from '../../types';
 import type { IconNameOrString } from '../Icon/Icon.model';
-import type { TooltipOptions } from '@/components/ui/Tooltip/Tooltip.model';
+import type { TooltipOptions } from '../Tooltip/Tooltip.model';
 import type { RouteLocationRaw } from 'vue-router';
 
 export type ButtonRouteLocation = RouteLocationRaw & {

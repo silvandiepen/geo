@@ -39,8 +39,8 @@ import { computed } from 'vue';
 import type { PropType } from 'vue';
 import { CardType, type BaseCardProps } from './Card.model';
 import { useBemm } from 'bemm';
-import { Color, Size } from '@/types';
-import { Icon } from '@/components/ui/Icon';
+import { Color, Size } from '../../types';
+import { Icon } from '../Icon';
 
 const props = defineProps({
 	type: {
@@ -122,7 +122,7 @@ const cardStyles = computed((): Record<string, string> => {
 
 <style lang="scss">
 .sil-card {
-	$b: &;
+
 
 	--int-border-width: 1px;
 	--int-card-border-color: var(
@@ -240,7 +240,7 @@ const cardStyles = computed((): Record<string, string> => {
 
 	&--small {
 		--int-card-title-size: var(--font-size-s);
-		&#{$b}--outline {
+		&.sil-card--outline {
 			--int-card-title-font-weight: 600;
 			--int-card-border-color_header: transparent;
 		}
@@ -299,7 +299,7 @@ const cardStyles = computed((): Record<string, string> => {
 		opacity: 0.8;
 	}
 
-	&--sticky-header > #{$b}__header {
+	&--sticky-header > .sil-card__header {
 		position: sticky;
 		top: 0;
 		z-index: 5;
@@ -350,13 +350,13 @@ const cardStyles = computed((): Record<string, string> => {
 			var(--int-card-title-font-weight, 500)
 		);
 
-		& + #{$b}__description {
+		& + .sil-card__description {
 			margin-top: var(--space-s);
 		}
 	}
 
 	&__header-title{
-		& + #{$b}__description {
+		& + .sil-card__description {
 			opacity: .5;
 			margin-top: var(--space-s);
 		}

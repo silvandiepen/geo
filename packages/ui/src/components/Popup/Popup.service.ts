@@ -9,7 +9,7 @@ import {
 } from 'vue';
 import PopupSlot from './PopupSlot.vue';
 import type { PopupOptions, PopupInstance, PopupUpdate } from './Popup.model';
-import { logger } from '@/utils/logger';
+import { logger } from '../../utils/logger';
 import { ConfirmDialog, ProgressDialog, InputDialog } from './components';
 
 const defaulPopupOptions: Partial<PopupOptions> = {
